@@ -101,12 +101,16 @@ observeReveals();
     return {x,y,r:rand(48,155),vx:rand(-.3,.3),vy:rand(-.25,.2),a:base,base,phase:rand(0,6.28),dark:Math.random()<.34};
   }
   function resize(){
-    const r=canvas.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);
+    const r=canvas.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,1.25);
     canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-    puffs=Array.from({length:Math.min(180,Math.max(110,Math.round(w*h/7600)))},()=>puff());
+    const mobile=window.matchMedia("(max-width: 800px)").matches;
+    const count=mobile?18:42;
+    puffs=Array.from({length:count},()=>puff());
   }
   function draw(t){
-    const dt=Math.min(2,(t-last)/16.67||1);last=t;ctx.clearRect(0,0,w,h);
+    if(document.hidden){last=t;return;}
+    if(t-last<32){requestAnimationFrame(draw);return;}
+    const dt=Math.min(2,(t-last)/33||1);last=t;ctx.clearRect(0,0,w,h);
     for(const p of puffs){
       if(!reduced){p.phase+=.012*dt;p.x+=(p.vx+Math.sin(p.phase)*.34)*dt;p.y+=(p.vy+Math.cos(p.phase*.7)*.2)*dt;}
       let clear=false;
@@ -134,4 +138,5 @@ observeReveals();
   area.addEventListener("pointermove",e=>{const r=canvas.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;pointer.active=true;},{passive:true});
   area.addEventListener("pointerleave",()=>{pointer.active=false;pointer.x=pointer.y=-2000;});
   window.addEventListener("resize",resize,{passive:true});resize();requestAnimationFrame(draw);
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden){last=0;requestAnimationFrame(draw);}});
 })();
