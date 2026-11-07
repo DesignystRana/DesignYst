@@ -3,6 +3,7 @@ let projects = [];
 let showreelUrl = "";
 const categories = [
   "Talking Head — Long Form",
+  "Talking Head Shorts",
   "AI Creations",
   "Gaming",
   "Motion Design — No Face",
