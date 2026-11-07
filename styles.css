@@ -95,3 +95,24 @@
  .smoke-hint{left:6vw;right:auto;bottom:68px}
 }
 @media(prefers-reduced-motion:reduce){.hint-ring:after{box-shadow:none}}
+
+/* Browser text editor */
+.editor-launch{border:1px solid #e50914;background:#e50914;color:#fff;padding:11px 14px;font:10px 'DM Mono';letter-spacing:1px;cursor:pointer}
+.editor-launch:hover{background:#ff1722}
+.site-editor{position:fixed;z-index:121;top:0;right:0;width:min(420px,92vw);height:100dvh;padding:28px;background:#111;color:#f5f5f2;border-left:1px solid #383838;transform:translateX(105%);transition:transform .28s ease;overflow:auto}
+.site-editor.open{transform:translateX(0)}
+.editor-backdrop{position:fixed;inset:0;background:#0009;z-index:120;opacity:0;pointer-events:none;transition:opacity .28s}
+.editor-backdrop.open{opacity:1;pointer-events:auto}
+.editor-top{display:flex;justify-content:space-between;align-items:center}
+.editor-top h2{font-size:25px;margin:8px 0 0;letter-spacing:-1px}
+.editor-close{background:none;border:0;color:#fff;font-size:32px;cursor:pointer}
+.editor-help,.editor-footnote{font-size:12px;line-height:1.7;color:#aaa}
+.editor-actions{display:grid;gap:10px;margin:22px 0}
+.editor-actions button{width:100%;min-height:43px}
+.editor-secondary{border:1px solid #555;background:#1b1b1b;color:#fff;font:10px 'DM Mono';letter-spacing:1px;cursor:pointer}
+.editor-secondary:hover{border-color:#e50914}
+.editor-status{font:11px 'DM Mono';color:#ff7882;min-height:18px}
+.editor-footnote{border-top:1px solid #333;padding-top:18px;margin-top:25px}
+body.editor-active [data-editor-target="true"]{outline:1px dashed #ff6474;outline-offset:4px;cursor:text}
+body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;background:#220b0e}
+@media(max-width:600px){.editor-launch{font-size:8px;padding:9px 10px}.site-header{gap:8px}}
