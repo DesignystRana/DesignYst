@@ -16,6 +16,7 @@
     <nav class="desktop-nav" aria-label="Main navigation">
       <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
+    <button class="editor-launch" id="editor-launch" type="button">EDIT WEBSITE</button>
     <a class="hire-button" href="#contact">LET'S TALK <span>↗</span></a>
   </header>
 
@@ -72,6 +73,20 @@
     <button class="modal-close" id="modal-close" aria-label="Close video">×</button>
     <div class="modal-frame" id="modal-frame"></div>
   </div>
+
+  <aside class="site-editor" id="site-editor" aria-hidden="true">
+    <div class="editor-top"><div><p class="eyebrow">DESIGNYST CONTROL</p><h2>Website editor</h2></div><button id="editor-close" class="editor-close" aria-label="Close editor">×</button></div>
+    <p class="editor-help">Turn on edit mode, then click text on the page to change it. Save a draft in this browser or export your changes to send for publishing.</p>
+    <div class="editor-actions">
+      <button id="editor-toggle" class="primary-button" type="button">START EDITING</button>
+      <button id="editor-save" class="editor-secondary" type="button">SAVE DRAFT</button>
+      <button id="editor-export" class="editor-secondary" type="button">EXPORT CHANGES</button>
+    </div>
+    <p id="editor-status" class="editor-status" aria-live="polite">Editing is off.</p>
+    <p class="editor-footnote">Drafts are saved only in this browser. To publish changes on the live website, export the changes and share the downloaded file here.</p>
+  </aside>
+  <div class="editor-backdrop" id="editor-backdrop"></div>
   <script src="script.js"></script>
+  <script src="editor.js"></script>
 </body>
 </html>
