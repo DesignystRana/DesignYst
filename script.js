@@ -21,7 +21,7 @@ function youtubeId(url){
 }
 function thumb(id){
   return id.startsWith("drive:")
-    ? `https://drive.google.com/thumbnail?id=${id.slice(6)}&sz=w1000`
+    ? `https://drive.google.com/thumbnail?id=${id.slice(6)}&sz=w400`
     : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 function renderProjects(){
@@ -85,58 +85,8 @@ fetch(DATA_URL).then(r=>r.json()).then(data=>{projects=data.projects;showreelUrl
 observeReveals();
 
 
-// Interactive smoke field: visible vapor is pushed into a swirling wake by the pointer.
+// Lightweight static hero: disable the canvas animation to avoid browser freezes.
 (() => {
   const canvas = document.getElementById("smoke-canvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d", { alpha: true });
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let w=0,h=0,dpr=1,puffs=[],last=0;
-  const pointer={x:-2000,y:-2000,active:false};
-  const rand=(a,b)=>a+Math.random()*(b-a);
-  function puff(edge=false){
-    let x=rand(0,w),y=rand(0,h);
-    if(edge){const side=Math.floor(Math.random()*4);if(side===0)x=-100;if(side===1)x=w+100;if(side===2)y=-100;if(side===3)y=h+100;}
-    const base=rand(.11,.23);
-    return {x,y,r:rand(48,155),vx:rand(-.3,.3),vy:rand(-.25,.2),a:base,base,phase:rand(0,6.28),dark:Math.random()<.34};
-  }
-  function resize(){
-    const r=canvas.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,1.25);
-    canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-    const mobile=window.matchMedia("(max-width: 800px)").matches;
-    const count=mobile?18:42;
-    puffs=Array.from({length:count},()=>puff());
-  }
-  function draw(t){
-    if(document.hidden){last=t;return;}
-    if(t-last<32){requestAnimationFrame(draw);return;}
-    const dt=Math.min(2,(t-last)/33||1);last=t;ctx.clearRect(0,0,w,h);
-    for(const p of puffs){
-      if(!reduced){p.phase+=.012*dt;p.x+=(p.vx+Math.sin(p.phase)*.34)*dt;p.y+=(p.vy+Math.cos(p.phase*.7)*.2)*dt;}
-      let clear=false;
-      if(pointer.active){
-        const dx=p.x-pointer.x,dy=p.y-pointer.y,d=Math.hypot(dx,dy)||1,range=300;
-        if(d<range){
-          clear=d<118;
-          const fall=1-d/range,force=fall*fall*4.4,swirl=fall*3;
-          p.vx+=(dx/d*force-dy/d*swirl)*.15*dt;
-          p.vy+=(dy/d*force+dx/d*swirl)*.15*dt;
-          p.a=Math.max(.005,p.a-.022*fall*dt);
-        }else p.a+=(p.base-p.a)*.014*dt;
-      }else p.a+=(p.base-p.a)*.009*dt;
-      p.vx*=.982;p.vy*=.982;p.x+=p.vx*dt;p.y+=p.vy*dt;
-      if(p.x<-p.r*2||p.x>w+p.r*2||p.y<-p.r*2||p.y>h+p.r*2)Object.assign(p,puff(true));
-      if(clear)continue;
-      const r=p.r*(1+Math.sin(p.phase)*.08),g=ctx.createRadialGradient(p.x,p.y,r*.03,p.x,p.y,r);
-      if(p.dark){g.addColorStop(0,`rgba(28,5,15,${p.a*1.25})`);g.addColorStop(.45,`rgba(83,17,38,${p.a*.8})`);g.addColorStop(.8,`rgba(135,37,61,${p.a*.25})`);}
-      else{g.addColorStop(0,`rgba(255,222,229,${p.a})`);g.addColorStop(.4,`rgba(220,151,168,${p.a*.75})`);g.addColorStop(.76,`rgba(145,77,96,${p.a*.3})`);}
-      g.addColorStop(1,"rgba(80,20,38,0)");ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fill();
-    }
-    if(!reduced)requestAnimationFrame(draw);
-  }
-  const area=canvas.closest(".hero-smoke")||canvas;
-  area.addEventListener("pointermove",e=>{const r=canvas.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;pointer.active=true;},{passive:true});
-  area.addEventListener("pointerleave",()=>{pointer.active=false;pointer.x=pointer.y=-2000;});
-  window.addEventListener("resize",resize,{passive:true});resize();requestAnimationFrame(draw);
-  document.addEventListener("visibilitychange",()=>{if(!document.hidden){last=0;requestAnimationFrame(draw);}});
+  if (canvas) canvas.style.display = "none";
 })();
