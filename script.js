@@ -74,68 +74,53 @@ fetch(DATA_URL).then(r=>r.json()).then(data=>{projects=data.projects;showreelUrl
 observeReveals();
 
 
-// Interactive smoke field: drifting vapor is pushed into a swirl by the pointer.
+// Interactive smoke field: visible vapor is pushed into a swirling wake by the pointer.
 (() => {
   const canvas = document.getElementById("smoke-canvas");
   if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let w = 0, h = 0, dpr = 1, puffs = [], last = 0;
-  const pointer = { x: -1000, y: -1000, px: -1000, py: -1000, active: false };
-  const rand = (a,b) => a + Math.random() * (b-a);
+  const ctx = canvas.getContext("2d", { alpha: true });
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let w=0,h=0,dpr=1,puffs=[],last=0;
+  const pointer={x:-2000,y:-2000,active:false};
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  function puff(edge=false){
+    let x=rand(0,w),y=rand(0,h);
+    if(edge){const side=Math.floor(Math.random()*4);if(side===0)x=-100;if(side===1)x=w+100;if(side===2)y=-100;if(side===3)y=h+100;}
+    const base=rand(.11,.23);
+    return {x,y,r:rand(48,155),vx:rand(-.3,.3),vy:rand(-.25,.2),a:base,base,phase:rand(0,6.28),dark:Math.random()<.34};
+  }
   function resize(){
-    const r=canvas.getBoundingClientRect();
-    w=r.width; h=r.height; dpr=Math.min(devicePixelRatio||1,1.5);
-    canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    const count=Math.min(115,Math.max(65,Math.floor(w*h/11500)));
-    puffs=Array.from({length:count},()=>({
-      x:rand(-80,w+80), y:rand(-80,h+80), r:rand(35,115),
-      vx:rand(-.24,.24), vy:rand(-.32,.12), a:rand(.035,.105),
-      phase:rand(0,Math.PI*2), tint:Math.random()
-    }));
+    const r=canvas.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);
+    canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+    puffs=Array.from({length:Math.min(180,Math.max(110,Math.round(w*h/7600)))},()=>puff());
   }
   function draw(t){
-    const dt=Math.min(2,(t-last)/16.67||1); last=t;
-    ctx.clearRect(0,0,w,h);
+    const dt=Math.min(2,(t-last)/16.67||1);last=t;ctx.clearRect(0,0,w,h);
     for(const p of puffs){
-      if(!reduceMotion){
-        p.phase+=.008*dt;
-        p.x+= (p.vx+Math.sin(p.phase)*.18)*dt;
-        p.y+= (p.vy+Math.cos(p.phase*.7)*.12)*dt;
-      }
+      if(!reduced){p.phase+=.012*dt;p.x+=(p.vx+Math.sin(p.phase)*.34)*dt;p.y+=(p.vy+Math.cos(p.phase*.7)*.2)*dt;}
+      let clear=false;
       if(pointer.active){
-        const dx=p.x-pointer.x, dy=p.y-pointer.y, dist=Math.hypot(dx,dy)||1;
-        const radius=210;
-        if(dist<radius){
-          const force=(1-dist/radius)*1.65;
-          const swirl=.85;
-          p.vx+=(dx/dist*force - dy/dist*swirl)*.075*dt;
-          p.vy+=(dy/dist*force + dx/dist*swirl)*.075*dt;
-          p.a=Math.max(.012,p.a*.94);
-        }else p.a=Math.min(p.tint?.105:.09,p.a+.00035*dt);
-      } else p.a=Math.min(p.tint?.105:.09,p.a+.0002*dt);
-      p.vx*=.986; p.vy*=.986;
-      if(p.x<-p.r*2)p.x=w+p.r;
-      if(p.x>w+p.r*2)p.x=-p.r;
-      if(p.y<-p.r*2)p.y=h+p.r;
-      if(p.y>h+p.r*2)p.y=-p.r;
-      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
-      const dark=p.tint>.55;
-      g.addColorStop(0,dark?`rgba(24,8,15,${p.a*1.65})`:`rgba(225,177,185,${p.a})`);
-      g.addColorStop(.48,dark?`rgba(48,18,28,${p.a*.9})`:`rgba(155,103,115,${p.a*.75})`);
-      g.addColorStop(1,"rgba(80,25,38,0)");
-      ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+        const dx=p.x-pointer.x,dy=p.y-pointer.y,d=Math.hypot(dx,dy)||1,range=300;
+        if(d<range){
+          clear=d<118;
+          const fall=1-d/range,force=fall*fall*4.4,swirl=fall*3;
+          p.vx+=(dx/d*force-dy/d*swirl)*.15*dt;
+          p.vy+=(dy/d*force+dx/d*swirl)*.15*dt;
+          p.a=Math.max(.005,p.a-.022*fall*dt);
+        }else p.a+=(p.base-p.a)*.014*dt;
+      }else p.a+=(p.base-p.a)*.009*dt;
+      p.vx*=.982;p.vy*=.982;p.x+=p.vx*dt;p.y+=p.vy*dt;
+      if(p.x<-p.r*2||p.x>w+p.r*2||p.y<-p.r*2||p.y>h+p.r*2)Object.assign(p,puff(true));
+      if(clear)continue;
+      const r=p.r*(1+Math.sin(p.phase)*.08),g=ctx.createRadialGradient(p.x,p.y,r*.03,p.x,p.y,r);
+      if(p.dark){g.addColorStop(0,`rgba(28,5,15,${p.a*1.25})`);g.addColorStop(.45,`rgba(83,17,38,${p.a*.8})`);g.addColorStop(.8,`rgba(135,37,61,${p.a*.25})`);}
+      else{g.addColorStop(0,`rgba(255,222,229,${p.a})`);g.addColorStop(.4,`rgba(220,151,168,${p.a*.75})`);g.addColorStop(.76,`rgba(145,77,96,${p.a*.3})`);}
+      g.addColorStop(1,"rgba(80,20,38,0)");ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fill();
     }
-    if(!reduceMotion) requestAnimationFrame(draw);
+    if(!reduced)requestAnimationFrame(draw);
   }
-  const interactionArea = canvas.closest(".hero-smoke") || canvas;
-  interactionArea.addEventListener("pointermove",e=>{
-    const r=canvas.getBoundingClientRect();
-    pointer.px=pointer.x;pointer.py=pointer.y;
-    pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;pointer.active=true;
-  },{passive:true});
-  interactionArea.addEventListener("pointerleave",()=>{pointer.active=false;pointer.x=-1000;pointer.y=-1000;});
-  window.addEventListener("resize",resize,{passive:true});
-  resize();requestAnimationFrame(draw);
+  const area=canvas.closest(".hero-smoke")||canvas;
+  area.addEventListener("pointermove",e=>{const r=canvas.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;pointer.active=true;},{passive:true});
+  area.addEventListener("pointerleave",()=>{pointer.active=false;pointer.x=pointer.y=-2000;});
+  window.addEventListener("resize",resize,{passive:true});resize();requestAnimationFrame(draw);
 })();
