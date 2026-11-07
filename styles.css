@@ -163,3 +163,7 @@ body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;b
 @media(max-width:800px){.about-animated .about-inner{padding-top:75px;padding-bottom:75px}.about-ambient span{filter:blur(65px);opacity:.17}}
 @media(max-width:480px){.about-animated .resume-block{padding:22px 18px}.about-animated .about-grid{padding-top:25px}}
 @media(prefers-reduced-motion:reduce){.about-ambient:before,.about-ambient span{animation:none!important}}
+
+/* Ensure the About section is always visible, independent of scroll animations */
+.about-animated{display:block!important;visibility:visible!important;opacity:1!important;transform:none!important}
+.about-animated.visible{opacity:1!important;transform:none!important}
