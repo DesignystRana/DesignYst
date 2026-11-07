@@ -4,13 +4,11 @@ let showreelUrl = "";
 const categories = [
   "Talking Head — Long Form",
   "Talking Head Shorts",
+  "Shorts",
   "AI Creations",
   "Gaming",
   "Motion Design — No Face",
   "Animation & Motion",
-  "Podcast Shorts",
-  "Tech Shorts",
-  "Real Estate Shorts",
   "Gaming Shorts"
 ];
 function youtubeId(url){
