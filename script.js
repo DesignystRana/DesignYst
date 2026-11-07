@@ -2,12 +2,8 @@ const DATA_URL = "projects.json";
 let projects = [];
 let showreelUrl = "";
 const categories = [
-  "Talking Head — Long Form",
+  "Videos",
   "Shorts",
-  "AI Creations",
-  "Gaming",
-  "Motion Design — No Face",
-  "Animation & Motion",
   "Gaming Shorts"
 ];
 function youtubeId(url){
