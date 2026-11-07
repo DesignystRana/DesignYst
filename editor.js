@@ -9,17 +9,24 @@
   const status=document.getElementById("editor-status");
   if(!panel||!launch)return;
   let editing=false;
+  let savedDraft=null;
   const selector="h1,h2,h3,p,a,button,span,.card-title,.card-type,.section-count,.eyebrow,.smoke-hint,footer";
+  function makeKey(el){
+    const clean=el.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48)||"text";
+    const peers=[...document.querySelectorAll(selector)].filter(x=>x.tagName===el.tagName&&x.textContent.trim()===el.textContent.trim());
+    return el.tagName.toLowerCase()+"-"+clean+"-"+peers.indexOf(el);
+  }
   function targets(){
     document.querySelectorAll(selector).forEach(el=>{
       if(el.closest(".site-editor")||el.closest(".modal")||el.id==="editor-launch")return;
       if(!el.textContent.trim())return;
       if(el.children.length&&!el.matches("h1,h2,h3,a,button"))return;
-      if(!el.dataset.editorKey)el.dataset.editorKey=el.tagName.toLowerCase()+"-"+Math.random().toString(36).slice(2,10);
+      if(!el.dataset.editorKey)el.dataset.editorKey=makeKey(el);
       el.dataset.editorTarget="true";
       el.contentEditable=editing?"true":"false";
       el.spellcheck=editing;
     });
+    if(savedDraft)apply(savedDraft);
   }
   function open(){panel.classList.add("open");backdrop.classList.add("open");panel.setAttribute("aria-hidden","false");}
   function shut(){panel.classList.remove("open");backdrop.classList.remove("open");panel.setAttribute("aria-hidden","true");}
@@ -31,10 +38,11 @@
   function apply(data){
     if(!data||!data.items)return;
     document.querySelectorAll("[data-editor-key]").forEach(el=>{
-      if(Object.prototype.hasOwnProperty.call(data.items,el.dataset.editorKey))el.innerHTML=data.items[el.dataset.editorKey];
+      const value=data.items[el.dataset.editorKey];
+      if(typeof value==="string"&&el.innerHTML!==value)el.innerHTML=value;
     });
   }
-  try{const saved=localStorage.getItem("designyst-text-draft");if(saved){const parsed=JSON.parse(saved);targets();apply(parsed);}}catch(e){}
+  try{const raw=localStorage.getItem("designyst-text-draft");if(raw)savedDraft=JSON.parse(raw);}catch(e){}
   launch.addEventListener("click",open);
   close.addEventListener("click",shut);
   backdrop.addEventListener("click",shut);
@@ -46,7 +54,7 @@
     status.textContent=editing?"Edit mode is on. Click any outlined text to change it.":"Editing is off.";
   });
   save.addEventListener("click",()=>{
-    try{localStorage.setItem("designyst-text-draft",JSON.stringify(collect()));status.textContent="Draft saved in this browser.";}
+    try{savedDraft=collect();localStorage.setItem("designyst-text-draft",JSON.stringify(savedDraft));status.textContent="Draft saved in this browser.";}
     catch(e){status.textContent="Could not save. Your browser storage may be full.";}
   });
   exportBtn.addEventListener("click",()=>{
