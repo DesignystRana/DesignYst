@@ -2,11 +2,11 @@ const DATA_URL = "projects.json";
 let projects = [];
 let showreelUrl = "";
 const categories = [
-  "Animation & Motion",
-  "Motion Design — No Face",
   "Talking Head — Long Form",
   "AI Creations",
   "Gaming",
+  "Motion Design — No Face",
+  "Animation & Motion",
   "Podcast Shorts",
   "Tech Shorts",
   "Real Estate Shorts",
@@ -26,27 +26,34 @@ function thumb(id){
 function renderProjects(){
   const root=document.getElementById("project-sections");
   root.innerHTML="";
+  const library=document.createElement("section");
+  library.className="work-library section-shell reveal";
+  library.id="work";
+  library.innerHTML='<div class="section-heading"><div><p class="eyebrow">PORTFOLIO / SELECTED WORK</p><h2>MY <span class="outline-word">PROJECTS</span><span class="red-dot">.</span></h2></div><span class="section-count">ALL VIDEOS / ONE PAGE</span></div>';
   categories.forEach((category,sectionIndex)=>{
     const items=projects.filter(p=>p.category===category);
     if(!items.length)return;
-    const section=document.createElement("section");
-    section.className="project-section reveal";
-    const shell=document.createElement("div");
-    shell.className="section-shell";
-    shell.innerHTML=`<div class="section-heading"><div><p class="eyebrow">SELECTED PROJECTS / ${String(sectionIndex+2).padStart(2,"0")}</p><h2>${category}<span class="red-dot">.</span></h2></div><span class="section-count">${String(items.length).padStart(2,"0")} PROJECT${items.length===1?"":"S"}</span></div>`;
+    const group=document.createElement("div");
+    group.className="work-category";
+    const heading=document.createElement("div");
+    heading.className="work-category-heading";
+    heading.innerHTML='<div><p class="eyebrow">CATEGORY / '+String(sectionIndex+1).padStart(2,"0")+'</p><h3>'+category+'<span class="red-dot">.</span></h3></div><span class="section-count">'+String(items.length).padStart(2,"0")+' VIDEOS</span>';
     const grid=document.createElement("div");
     grid.className="project-grid";
     items.forEach((p,i)=>{
       const id=youtubeId(p.url);
       const card=document.createElement("button");
-      card.className=`project-card ${p.type==="portrait"?"portrait":""}`;
-      card.setAttribute("aria-label",`Play ${p.title}`);
-      card.innerHTML=`<div class="thumb-wrap"><img loading="lazy" src="${thumb(id)}" alt="${p.title} thumbnail"><span class="thumb-play"><span>▶</span></span></div><div class="card-meta"><div><div class="card-title">${p.title}</div><div class="card-type">${category}</div></div><span class="card-index">${String(i+1).padStart(2,"0")}</span></div>`;
+      card.className="project-card "+(p.type==="portrait"?"portrait":"");
+      card.setAttribute("aria-label","Play "+p.title);
+      card.innerHTML='<div class="thumb-wrap"><img loading="lazy" src="'+thumb(id)+'" alt="'+p.title+' thumbnail"><span class="thumb-play"><span>▶</span></span></div><div class="card-meta"><div><div class="card-title">'+p.title+'</div><div class="card-type">'+category+'</div></div><span class="card-index">'+String(i+1).padStart(2,"0")+'</span></div>';
       card.addEventListener("click",()=>openPlayer(p.url,p.type));
       grid.appendChild(card);
     });
-    shell.appendChild(grid);section.appendChild(shell);root.appendChild(section);
+    group.appendChild(heading);
+    group.appendChild(grid);
+    library.appendChild(group);
   });
+  root.appendChild(library);
   observeReveals();
 }
 const modal=document.getElementById("video-modal"), frame=document.getElementById("modal-frame");
