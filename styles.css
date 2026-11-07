@@ -116,3 +116,22 @@
 body.editor-active [data-editor-target="true"]{outline:1px dashed #ff6474;outline-offset:4px;cursor:text}
 body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;background:#220b0e}
 @media(max-width:600px){.editor-launch{font-size:8px;padding:9px 10px}.site-header{gap:8px}}
+
+/* Resume and contact information */
+.resume-subheading{font:500 12px 'DM Mono';letter-spacing:2px;color:#f0a0ae;margin:0 0 16px}
+.resume-details{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:58px}
+.resume-block{border-top:1px solid #3b3032;padding:22px 0 10px}
+.resume-block>.eyebrow{margin:0 0 22px;color:#e58b9b}
+.resume-block h3{font-size:18px;letter-spacing:-.4px;margin:14px 0 7px}
+.resume-block p,.resume-block li{font-size:13px;line-height:1.8;color:#aaa}
+.resume-block ul{padding-left:18px;margin:8px 0 22px}
+.resume-duration{font:10px 'DM Mono';letter-spacing:1.4px;color:#e50914!important;margin:0}
+.resume-skills{grid-column:1/-1}
+.resume-skills .skills{margin:14px 0 20px}
+.resume-platforms{font:10px 'DM Mono'!important;letter-spacing:1px;color:#ddd!important}
+.contact-details{display:flex;flex-wrap:wrap;gap:18px 55px;margin:34px 0 8px}
+.contact-details a{display:grid;gap:8px}
+.contact-details a span{font:10px 'DM Mono';letter-spacing:1.5px;color:#e58b9b}
+.contact-details a strong{font-size:16px;font-weight:600;color:#f5f5f2}
+.contact-details a:hover strong{color:#ff5364}
+@media(max-width:600px){.resume-details{grid-template-columns:1fr;gap:16px;margin-top:38px}.resume-skills{grid-column:auto}.contact-details{display:grid;gap:20px}.contact-details a strong{font-size:14px}}
