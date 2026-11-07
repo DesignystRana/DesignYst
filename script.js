@@ -3,8 +3,8 @@ let projects = [];
 let showreelUrl = "";
 const categories = [
   "Videos",
-  "Design",
   "Shorts",
+  "Design",
   "Gaming Shorts"
 ];
 function youtubeId(url){
@@ -35,7 +35,7 @@ function renderProjects(){
     const items=projects.filter(p=>p.category===category);
     if(!items.length)return;
     const group=document.createElement("div");
-    group.className="work-category";
+    group.className="work-category"+(category==="Shorts"?" shorts-category":category==="Design"?" design-category":"");
     const heading=document.createElement("div");
     heading.className="work-category-heading";
     heading.innerHTML='<div><p class="eyebrow">CATEGORY / '+String(sectionIndex+1).padStart(2,"0")+'</p><h3>'+category+'<span class="red-dot">.</span></h3></div><span class="section-count">'+String(items.length).padStart(2,"0")+(category==="Design"?" DESIGNS":" VIDEOS")+'</span>';
