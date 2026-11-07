@@ -28,7 +28,7 @@ function renderProjects(){
   const root=document.getElementById("project-sections");
   root.innerHTML="";
   const library=document.createElement("section");
-  library.className="work-library section-shell reveal";
+  library.className="work-library section-shell visible";
   library.id="work";
   library.innerHTML='<div class="section-heading"><div><p class="eyebrow">PORTFOLIO / SELECTED WORK</p><h2>MY <span class="outline-word">PROJECTS</span><span class="red-dot">.</span></h2></div><span class="section-count">ALL VIDEOS / ONE PAGE</span></div>';
   categories.forEach((category,sectionIndex)=>{
@@ -81,7 +81,7 @@ function observeReveals(){
   const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");io.unobserve(entry.target)}}),{threshold:.08});
   els.forEach(el=>io.observe(el));
 }
-fetch(DATA_URL).then(r=>r.json()).then(data=>{projects=data.projects;showreelUrl=data.showreel;renderProjects()}).catch(()=>{document.getElementById("project-sections").innerHTML='<p style="padding:40px;color:#aaa">Could not load projects.json. Make sure it is uploaded beside index.html.</p>'});
+fetch(DATA_URL+"?v=20261107",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("Projects file request failed: "+r.status);return r.json()}).then(data=>{if(!data||!Array.isArray(data.projects))throw new Error("Invalid projects data");projects=data.projects;showreelUrl=data.showreel||"";renderProjects()}).catch(error=>{console.error("DesignYst projects failed to load:",error);document.getElementById("project-sections").innerHTML='<p style="padding:40px;color:#aaa">Projects could not load. Please refresh the page in a moment.</p>'});
 observeReveals();
 
 
