@@ -240,3 +240,21 @@ body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;b
 .platform-logos{gap:8px}
 .platform-logos span{gap:7px;padding:6px 8px;font-size:8px}
 .platform-logos img{width:16px;height:16px;flex-basis:16px}
+
+
+/* Shorts: four cards per row; Design: five compact cards per row */
+.work-category.shorts-category .project-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.work-category.design-category .project-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.work-category.design-category .thumb-wrap{aspect-ratio:4/3}
+.work-category.design-category .card-meta{padding-top:8px}
+.work-category.design-category .card-title{font-size:11px}
+.work-category.design-category .card-type{font-size:8px}
+@media(max-width:800px){
+ .work-category.shorts-category .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .work-category.design-category .project-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+}
+@media(max-width:480px){
+ .work-category.shorts-category .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .work-category.design-category .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .work-category.design-category .card-title{font-size:10px}
+}
