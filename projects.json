@@ -21,50 +21,50 @@
     },
     {
       "title": "Faceless Motion 01",
-      "category": "Motion Design \u2014 No Face",
+      "category": "Motion Design — No Face",
       "url": "https://youtu.be/itjriqWSrbs",
       "type": "landscape"
     },
     {
       "title": "Faceless Motion 02",
-      "category": "Motion Design \u2014 No Face",
+      "category": "Motion Design — No Face",
       "url": "https://youtu.be/5Fom4GF6EWo",
       "type": "landscape"
     },
     {
       "title": "Faceless Motion 03",
-      "category": "Motion Design \u2014 No Face",
+      "category": "Motion Design — No Face",
       "url": "https://youtu.be/RDy6XZ0r7dA",
       "type": "landscape"
     },
     {
       "title": "Talking Head 01",
-      "category": "Talking Head \u2014 Long Form",
+      "category": "Talking Head — Long Form",
       "url": "https://youtu.be/QidmYe2rPLw",
       "type": "landscape"
     },
     {
       "title": "Talking Head 02",
-      "category": "Talking Head \u2014 Long Form",
+      "category": "Talking Head — Long Form",
       "url": "https://youtu.be/9mfr4TNm_7s",
       "type": "landscape"
     },
     {
       "title": "Talking Head 03",
-      "category": "Talking Head \u2014 Long Form",
+      "category": "Talking Head — Long Form",
       "url": "https://youtu.be/Dut7LGmQnMc",
       "type": "landscape"
     },
     {
       "title": "Talking Head 04",
-      "category": "Talking Head \u2014 Long Form",
+      "category": "Talking Head — Long Form",
       "url": "https://youtu.be/SwVmBRHuOxU",
       "type": "landscape",
       "note": "Also supplied in Gaming; listed once here to avoid duplication."
     },
     {
       "title": "Talking Head 05",
-      "category": "Talking Head \u2014 Long Form",
+      "category": "Talking Head — Long Form",
       "url": "https://youtu.be/LGM7P_-APhM",
       "type": "landscape"
     },
@@ -138,6 +138,12 @@
       "title": "Gaming Short 03",
       "category": "Gaming Shorts",
       "url": "https://youtube.com/shorts/ghbX1WfKIHc",
+      "type": "portrait"
+    },
+    {
+      "title": "Tech Short 03",
+      "category": "Tech Shorts",
+      "url": "https://drive.google.com/file/d/1EUySYI-5Zek_D6so-z5ubqHtG_tAPiPS/view?usp=sharing",
       "type": "portrait"
     }
   ]
