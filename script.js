@@ -15,13 +15,19 @@ const categories = [
 function youtubeId(url){
   try{
     const u=new URL(url);
+    if(u.hostname.includes("drive.google.com")){
+      const match=u.pathname.match(/\/file\/d\/([^/]+)/);
+      return match ? "drive:"+match[1] : "";
+    }
     if(u.hostname.includes("youtu.be")) return u.pathname.slice(1);
     if(u.pathname.includes("/shorts/")) return u.pathname.split("/shorts/")[1].split("/")[0];
     return u.searchParams.get("v") || "";
   }catch(e){return "";}
 }
 function thumb(id){
-  return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+  return id.startsWith("drive:")
+    ? `https://drive.google.com/thumbnail?id=${id.slice(6)}&sz=w1000`
+    : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 function renderProjects(){
   const root=document.getElementById("project-sections");
@@ -61,7 +67,10 @@ function openPlayer(url,type="landscape"){
   const id=url==="SHOWREEL"?youtubeId(showreelUrl):youtubeId(url);
   if(!id)return;
   frame.className=`modal-frame ${type==="portrait"?"portrait":""}`;
-  frame.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="DesignYst video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  const playerUrl=id.startsWith("drive:")
+    ? `https://drive.google.com/file/d/${id.slice(6)}/preview`
+    : `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+  frame.innerHTML=`<iframe src="${playerUrl}" title="DesignYst video player" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
   modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
 }
 function closePlayer(){
