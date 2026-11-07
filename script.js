@@ -3,6 +3,7 @@ let projects = [];
 let showreelUrl = "";
 const categories = [
   "Videos",
+  "Design",
   "Shorts",
   "Gaming Shorts"
 ];
@@ -37,7 +38,7 @@ function renderProjects(){
     group.className="work-category";
     const heading=document.createElement("div");
     heading.className="work-category-heading";
-    heading.innerHTML='<div><p class="eyebrow">CATEGORY / '+String(sectionIndex+1).padStart(2,"0")+'</p><h3>'+category+'<span class="red-dot">.</span></h3></div><span class="section-count">'+String(items.length).padStart(2,"0")+' VIDEOS</span>';
+    heading.innerHTML='<div><p class="eyebrow">CATEGORY / '+String(sectionIndex+1).padStart(2,"0")+'</p><h3>'+category+'<span class="red-dot">.</span></h3></div><span class="section-count">'+String(items.length).padStart(2,"0")+(category==="Design"?" DESIGNS":" VIDEOS")+'</span>';
     const grid=document.createElement("div");
     grid.className="project-grid";
     items.forEach((p,i)=>{
