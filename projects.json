@@ -1,0 +1,144 @@
+{
+  "showreel": "https://youtu.be/LuPTLLsX7eY",
+  "projects": [
+    {
+      "title": "Animation 01",
+      "category": "Animation & Motion",
+      "url": "https://youtu.be/YnNAUj-R0Eo",
+      "type": "landscape"
+    },
+    {
+      "title": "Animation 02",
+      "category": "Animation & Motion",
+      "url": "https://youtu.be/v5lcl2SXe2g",
+      "type": "landscape"
+    },
+    {
+      "title": "Animation 03",
+      "category": "Animation & Motion",
+      "url": "https://youtu.be/exj7cKR0YEc",
+      "type": "landscape"
+    },
+    {
+      "title": "Faceless Motion 01",
+      "category": "Motion Design \u2014 No Face",
+      "url": "https://youtu.be/itjriqWSrbs",
+      "type": "landscape"
+    },
+    {
+      "title": "Faceless Motion 02",
+      "category": "Motion Design \u2014 No Face",
+      "url": "https://youtu.be/5Fom4GF6EWo",
+      "type": "landscape"
+    },
+    {
+      "title": "Faceless Motion 03",
+      "category": "Motion Design \u2014 No Face",
+      "url": "https://youtu.be/RDy6XZ0r7dA",
+      "type": "landscape"
+    },
+    {
+      "title": "Talking Head 01",
+      "category": "Talking Head \u2014 Long Form",
+      "url": "https://youtu.be/QidmYe2rPLw",
+      "type": "landscape"
+    },
+    {
+      "title": "Talking Head 02",
+      "category": "Talking Head \u2014 Long Form",
+      "url": "https://youtu.be/9mfr4TNm_7s",
+      "type": "landscape"
+    },
+    {
+      "title": "Talking Head 03",
+      "category": "Talking Head \u2014 Long Form",
+      "url": "https://youtu.be/Dut7LGmQnMc",
+      "type": "landscape"
+    },
+    {
+      "title": "Talking Head 04",
+      "category": "Talking Head \u2014 Long Form",
+      "url": "https://youtu.be/SwVmBRHuOxU",
+      "type": "landscape",
+      "note": "Also supplied in Gaming; listed once here to avoid duplication."
+    },
+    {
+      "title": "Talking Head 05",
+      "category": "Talking Head \u2014 Long Form",
+      "url": "https://youtu.be/LGM7P_-APhM",
+      "type": "landscape"
+    },
+    {
+      "title": "AI Creation 01",
+      "category": "AI Creations",
+      "url": "https://youtu.be/PshLjAvii3M",
+      "type": "landscape"
+    },
+    {
+      "title": "AI Creation 02",
+      "category": "AI Creations",
+      "url": "https://youtu.be/5GLLWNDM_hQ",
+      "type": "landscape"
+    },
+    {
+      "title": "Gaming 01",
+      "category": "Gaming",
+      "url": "https://youtu.be/tRtMZpRF8SU",
+      "type": "landscape"
+    },
+    {
+      "title": "Gaming 03",
+      "category": "Gaming",
+      "url": "https://youtu.be/iEFSS5bZ4DU",
+      "type": "landscape"
+    },
+    {
+      "title": "Podcast Short 01",
+      "category": "Podcast Shorts",
+      "url": "https://youtube.com/shorts/wPquLkUiJ-Q",
+      "type": "portrait"
+    },
+    {
+      "title": "Podcast Short 02",
+      "category": "Podcast Shorts",
+      "url": "https://youtube.com/shorts/2p42OJNP6lM",
+      "type": "portrait"
+    },
+    {
+      "title": "Tech Short 01",
+      "category": "Tech Shorts",
+      "url": "https://youtube.com/shorts/2qjz95t8bfk",
+      "type": "portrait"
+    },
+    {
+      "title": "Tech Short 02",
+      "category": "Tech Shorts",
+      "url": "https://youtube.com/shorts/sKeTJ0NB3Jg",
+      "type": "portrait"
+    },
+    {
+      "title": "Real Estate Short 01",
+      "category": "Real Estate Shorts",
+      "url": "https://youtube.com/shorts/ha28t5BeiXs",
+      "type": "portrait"
+    },
+    {
+      "title": "Gaming Short 01",
+      "category": "Gaming Shorts",
+      "url": "https://youtube.com/shorts/asopuTz-gmA",
+      "type": "portrait"
+    },
+    {
+      "title": "Gaming Short 02",
+      "category": "Gaming Shorts",
+      "url": "https://youtube.com/shorts/ZaqOWHUSb78",
+      "type": "portrait"
+    },
+    {
+      "title": "Gaming Short 03",
+      "category": "Gaming Shorts",
+      "url": "https://youtube.com/shorts/ghbX1WfKIHc",
+      "type": "portrait"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="DesignYst — Video editor and motion designer portfolio. Explore animation, motion design, long-form editing, AI creations, gaming and short-form projects.">
+  <title>DesignYst — Video Editor & Motion Designer</title>
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preconnect" href="https://www.youtube-nocookie.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="DesignYst home">ROY<span>SPILL</span><i>.</i></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="hire-button" href="#contact">LET'S TALK <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="live-dot"></span> VIDEO EDITOR&nbsp; / &nbsp;MOTION DESIGNER</p>
+        <h1>VISUAL STORIES.<br><em>POWERFUL</em> EDITS.</h1>
+        <p class="hero-description">I turn raw footage into stories that move people — through rhythm, detail, motion and sound.</p>
+        <div class="hero-actions">
+          <button class="primary-button" data-play-url="SHOWREEL">▶ &nbsp; WATCH SHOWREEL</button>
+          <a class="text-link" href="#work">EXPLORE MY WORK <span>↓</span></a>
+        </div>
+      </div>
+      <button class="hero-art" data-play-url="SHOWREEL" aria-label="Play showreel">
+        <div class="hero-art-grid"></div><div class="hero-art-word">PLAY<br><span>REEL</span></div>
+        <div class="hero-art-bottom"><span>DesignYst / SELECTED WORK</span><span>2026</span></div>
+        <span class="hero-play">▶</span>
+      </button>
+      <div class="hero-index"><span>SCROLL TO EXPLORE</span><span class="index-line"></span><span>01 — 09</span></div>
+    </section>
+
+    <section class="featured section-shell reveal" id="work">
+      <div class="section-heading">
+        <div><p class="eyebrow">A QUICK INTRODUCTION</p><h2>THE SHOWREEL<span class="red-dot">.</span></h2></div>
+        <span class="section-count">FEATURED / 001</span>
+      </div>
+      <button class="showreel-card" data-play-url="SHOWREEL" aria-label="Play DesignYst showreel">
+        <div class="showreel-overlay"><span class="play-circle">▶</span><span>PLAY SHOWREEL</span></div>
+        <div class="showreel-caption"><strong>DesignYst — SELECTED WORK</strong><span>VIDEO EDITING · MOTION · STORYTELLING</span></div>
+      </button>
+    </section>
+
+    <div id="project-sections"></div>
+
+    <section class="about section-shell reveal" id="about">
+      <div class="section-heading"><div><p class="eyebrow">BEHIND THE EDITS</p><h2>ABOUT <span class="outline-word">ME</span><span class="red-dot">.</span></h2></div><span class="section-count">THE EDITOR / 010</span></div>
+      <div class="about-grid">
+        <div class="about-statement">I BUILD<br><span>FEELING</span><br>FRAME BY FRAME.</div>
+        <div class="about-copy">
+          <p class="large-copy">I'm a video editor focused on creating engaging visual experiences for digital platforms.</p>
+          <p>My portfolio brings together animation, motion design, long-form storytelling, AI-assisted visuals, gaming edits and short-form content. Each project is an opportunity to make the story clearer, sharper and more memorable.</p>
+          <div class="skills"><span>VIDEO EDITING</span><span>MOTION GRAPHICS</span><span>STORYTELLING</span><span>SOCIAL CONTENT</span><span>AI VIDEO</span></div>
+          <p class="small-note">Add or remove software names below once you confirm the tools you use.</p>
+          <div class="software"><b>CREATIVE TOOLKIT</b><span>Premiere Pro · After Effects · Photoshop · DaVinci Resolve</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section-shell reveal" id="contact">
+      <p class="eyebrow">HAVE A PROJECT OR OPPORTUNITY?</p>
+      <h2>LET'S MAKE<br><em>IT MATTER.</em></h2>
+      <p class="contact-copy">Looking for a video editor? I'd love to hear what you're working on.</p>
+      <div class="contact-actions">
+        <a class="primary-button link-button" href="mailto:YOUR_EMAIL@example.com">EMAIL ME ↗</a>
+        <a class="text-link" href="#" id="resume-link">DOWNLOAD RESUME ↓</a>
+      </div>
+      <p class="replace-note">Replace the placeholder email and add your resume PDF before publishing.</p>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top">ROY<span>SPILL</span><i>.</i></a><span>DESIGNED TO SHOW THE WORK.</span><a href="#top">BACK TO TOP ↑</a></footer>
+
+  <div class="modal" id="video-modal" aria-hidden="true" role="dialog" aria-label="Video player">
+    <button class="modal-close" id="modal-close" aria-label="Close video">×</button>
+    <div class="modal-frame" id="modal-frame"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
