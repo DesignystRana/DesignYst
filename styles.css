@@ -269,3 +269,16 @@ body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;b
 .social-platforms-card .platform-logos img{width:18px;height:18px;flex:0 0 18px}
 .social-arrow{color:#e50914;margin-left:2px}
 @media(max-width:680px){.social-platforms-card{padding:22px 20px}.social-platforms-card .platform-logos{gap:8px}.social-platforms-card .platform-logos a{padding:9px 10px}}
+
+
+/* Motion & Effect: five video cards in one row on desktop */
+.work-category.motion-effect-category .project-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.work-category.motion-effect-category .thumb-wrap{aspect-ratio:16/9}
+.work-category.motion-effect-category .card-title{font-size:11px}
+@media(max-width:800px){
+ .work-category.motion-effect-category .project-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+}
+@media(max-width:480px){
+ .work-category.motion-effect-category .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .work-category.motion-effect-category .card-title{font-size:10px}
+}
