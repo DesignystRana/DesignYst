@@ -236,7 +236,7 @@ body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;b
 .skills-with-logos .skill-row:last-child{border-bottom:0}
 .skills-with-logos .skill-row img{display:block;width:17px;height:17px;max-width:17px;max-height:17px;object-fit:contain;flex:0 0 17px}
 .skills-with-logos .skill-placeholder{width:17px;height:17px;flex:0 0 17px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #aaa;border-radius:3px;color:#ddd;font:700 10px Arial}
-.skills-with-logos .skill-text{padding-left:29px;color:#c8c0c5}
+.skills-with-logos .skill-text{padding-left:2px;color:#c8c0c5}
 .platform-logos{gap:8px}
 .platform-logos span{gap:7px;padding:6px 8px;font-size:8px}
 .platform-logos img{width:16px;height:16px;flex-basis:16px}
