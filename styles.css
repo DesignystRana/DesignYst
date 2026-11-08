@@ -258,3 +258,14 @@ body.editor-active [data-editor-target="true"]:focus{outline:2px solid #e50914;b
  .work-category.design-category .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
  .work-category.design-category .card-title{font-size:10px}
 }
+
+
+/* Separate social links card below Skills & Tools */
+.social-platforms-card{margin-top:18px;padding:24px 28px;border:1px solid #ffffff22;border-radius:12px;background:linear-gradient(145deg,#ffffff0b,#ffffff03);backdrop-filter:blur(8px)}
+.social-platforms-card>.eyebrow{margin:0 0 16px;color:#df8296;font-size:11px;letter-spacing:2px}
+.social-platforms-card .platform-logos{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.social-platforms-card .platform-logos a{display:flex;align-items:center;gap:9px;padding:10px 12px;border:1px solid #ffffff20;border-radius:6px;background:#09090dbb;color:#eee;font:9px 'DM Mono';letter-spacing:.8px;transition:border-color .2s,background .2s}
+.social-platforms-card .platform-logos a:hover{border-color:#e50914;background:#e5091415}
+.social-platforms-card .platform-logos img{width:18px;height:18px;flex:0 0 18px}
+.social-arrow{color:#e50914;margin-left:2px}
+@media(max-width:680px){.social-platforms-card{padding:22px 20px}.social-platforms-card .platform-logos{gap:8px}.social-platforms-card .platform-logos a{padding:9px 10px}}
