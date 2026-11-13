@@ -4,8 +4,8 @@ let showreelUrl = "";
 const categories = [
   "Videos",
   "Shorts",
-  "Design",
-  "Motion & Effect"
+  "Motion & Effect",
+  "Design"
 ];
 function youtubeId(url){
   try{
