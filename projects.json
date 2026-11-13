@@ -2,6 +2,12 @@
   "showreel": "https://youtu.be/LuPTLLsX7eY",
   "projects": [
     {
+      "title": "Video 01",
+      "category": "Videos",
+      "url": "https://youtu.be/V_6qKFGCC10",
+      "type": "landscape"
+    },
+    {
       "title": "Animation 01",
       "category": "Videos",
       "url": "https://youtu.be/YnNAUj-R0Eo",
