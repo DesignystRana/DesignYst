@@ -51,24 +51,6 @@
       "type": "landscape"
     },
     {
-      "title": "Animation 01",
-      "category": "Videos",
-      "url": "https://youtu.be/YnNAUj-R0Eo",
-      "type": "landscape"
-    },
-    {
-      "title": "Animation 02",
-      "category": "Videos",
-      "url": "https://youtu.be/v5lcl2SXe2g",
-      "type": "landscape"
-    },
-    {
-      "title": "Animation 03",
-      "category": "Videos",
-      "url": "https://youtu.be/exj7cKR0YEc",
-      "type": "landscape"
-    },
-    {
       "title": "Faceless Motion 01",
       "category": "Videos",
       "url": "https://youtu.be/itjriqWSrbs",
@@ -84,6 +66,24 @@
       "title": "Faceless Motion 03",
       "category": "Videos",
       "url": "https://youtu.be/RDy6XZ0r7dA",
+      "type": "landscape"
+    },
+    {
+      "title": "Animation 01",
+      "category": "Videos",
+      "url": "https://youtu.be/YnNAUj-R0Eo",
+      "type": "landscape"
+    },
+    {
+      "title": "Animation 02",
+      "category": "Videos",
+      "url": "https://youtu.be/v5lcl2SXe2g",
+      "type": "landscape"
+    },
+    {
+      "title": "Animation 03",
+      "category": "Videos",
+      "url": "https://youtu.be/exj7cKR0YEc",
       "type": "landscape"
     },
     {
